@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/dsb.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="/student/"><span class="sr-only">(current)</span></a></li>
+            <li><a href=""></a></li>
+            <li><a href="#">成绩</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <h2 class="sub-header">用户信息</h2>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+            <a href="/user_add">新增</a>
+                <thead>
+                <tr>
+
+                    <th>序号</th>
+                    <th>id</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for i in all_user %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.pk }}</td>
+                        <td>{{ i.username }}</td>
+                        <td>{{ i.password }}</td>
+                        <td><a class="btn btn-danger btn-sm"href="/user_del/?pk={{ i.pk }}">删除</a>
+                            <a class="btn btn-primary btn-sm"href="/user_edit/?pk={{ i.pk }}">编辑</a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+        </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+</body>
+
+
+
+
+
+<table border="1">
+
+
+</html>

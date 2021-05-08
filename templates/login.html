@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>登录</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Triple Forms Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements">
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Meta tag Keywords -->
+
+	<!-- css files -->
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+	<!-- Style-CSS -->
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+
+</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  <div class="hidden" style="display: none">
+<textarea id="pubkey" >{{ public_key }}</textarea><br/>
+</div>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://passport.cnblogs.com/scripts/jsencrypt.min.js"></script>
+<script type="text/javascript">
+     $(function() {
+        $('#sign_in').click(function() {
+          // 用公钥加密
+          var encrypt = new JSEncrypt();
+          encrypt.setPublicKey($('#pubkey').val());
+          alert($('#pubkey').val())
+          alert($('#inputPassword').val())
+          var encrypted = encrypt.encrypt($('#inputPassword').val());
+            $('#inputPassword').val(encrypted);
+            $('#form').submit();
+          alert('加密成功！！' +encrypted);
+    });
+        });
+        // 使用jsencrypt类库加密js方法，
+        function encryptRequest(reqUrl, data) {
+            $.ajax({
+                url: reqUrl,
+                type: 'get',
+                data: {"data": data},
+                success: function (data) {
+                    alert("后台！解密成功 ！！！" + data);
+                },
+                error: function (xhr) {
+                    {#//console.error('出错了');#}
+                }
+            });
+        }
+
+
+</script>
+
+    <div class="container">
+
+      <form id = "form" class="form-signin" action="" method="POST" novalidate>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+
+        <input type="email" id="inputEmail" name="user" class="form-control" placeholder="username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="pwd" id="inputPassword" class="form-control" placeholder="Password" required>
+
+          {{ login_form.captcha.errors }}{{ login_form.captcha.label_tag }}{{ login_form.captcha }}
+          <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+            <a href="/change">change the password</a>
+        </div>
+        <button id = "sign_in" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
